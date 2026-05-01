@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>🏮～四番賞～和陰間使者共度今夜</title>
+    <style>
+/* 1. 基礎與防縮放排版 */
+body { 
+    margin: 0; 
+    background-color: #111; 
+    text-align: center; 
+}
+
+#board {
+    position: relative;
+    width: 1080px; /* 這裡請填入你 background.jpg 的真實像素寬度 */
+    height: auto;
+    margin: 0 auto; 
+    max-width: none;
+    flex-shrink: 0;
+    transform-origin: top left;
+}
+
+.base-img { 
+    width: 100%; 
+    display: block; 
+}
+
+/* 2. 貼紙基礎設定 (絕對不能刪) */
+.sticker {
+    position: absolute;
+    width: 100px;  /* 請根據底圖的格子大小自行調整貼紙寬度 */
+    height: 75px; /* 請根據底圖的格子大小自行調整貼紙高度 */
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0;   /* 預設透明，未抽中時隱藏 */
+    transition: opacity 0.3s ease;
+    z-index: 10;  /* 雙重保險：強制貼紙顯示在最上層 */
+}
+
+/* 3. 各賞別圖片路徑與顯示狀態 (絕對不能刪) */
+.sold-Last { background-image: url('sold_Last.png'); opacity: 1; }
+.sold-A { background-image: url('sold_A.png'); opacity: 1; }
+.sold-B { background-image: url('sold_B.png'); opacity: 1; }
+.sold-C { background-image: url('sold_C.png'); opacity: 1; }
+.sold-D { background-image: url('sold_D.png'); opacity: 1; }
+.sold-E { background-image: url('sold_E.png'); opacity: 1; }
+.sold-F { background-image: url('sold_F.png'); opacity: 1; }
+.sold-G { background-image: url('sold_G.png'); opacity: 1; }
+.sold-H { background-image: url('sold_H.png'); opacity: 1; }
+.sold-I { background-image: url('sold_I.png'); opacity: 1; }
+
+.base-img { 
+    width: 100%; 
+    display: block; 
+}
+
+        /* 專屬貼紙設定 */
+        .sold-Last { background-image: url('sold_Last.png'); opacity: 1; }
+        .sold-A { background-image: url('sold_A.png'); opacity: 1; }
+        .sold-B { background-image: url('sold_B.png'); opacity: 1; }
+        .sold-C { background-image: url('sold_C.png'); opacity: 1; }
+        .sold-D { background-image: url('sold_D.png'); opacity: 1; }
+        .sold-E { background-image: url('sold_E.png'); opacity: 1; }
+        .sold-F { background-image: url('sold_F.png'); opacity: 1; }
+        .sold-G { background-image: url('sold_G.png'); opacity: 1; }
+        .sold-H { background-image: url('sold_H.png'); opacity: 1; }
+        .sold-I { background-image: url('sold_I.png'); opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <div id="board">
+        <img src="background.png" class="base-img" alt="底圖">
+        
+        <!-- 籤位範例 -->
+        <div id="ticket-Last-1" class="sticker" style="top: 50px; left: 100px;"></div>
+        <div id="ticket-A-1" class="sticker" style="top: 460px; left: 322px;"></div>
+        <div id="ticket-A-2" class="sticker" style="top: 522px; left: 342px;"></div>
+        <div id="ticket-A-3" class="sticker" style="top: 579px; left: 360px;"></div>
+
+        <div id="ticket-B-1" class="sticker" style="top: 460px; left: 787px;"></div>
+        <div id="ticket-B-2" class="sticker" style="top: 521px; left: 805px;"></div>
+        <div id="ticket-B-3" class="sticker" style="top: 579px; left: 826px;"></div>
+
+        <div id="ticket-C-1" class="sticker" style="top: 782px; left: 192px;"></div>
+        <div id="ticket-C-2" class="sticker" style="top: 866px; left: 191px;"></div>
+
+        <div id="ticket-D-1" class="sticker" style="top: 780px; left: 504px;"></div>
+        <div id="ticket-D-2" class="sticker" style="top: 824px; left: 525px;"></div>
+        <div id="ticket-D-3" class="sticker" style="top: 866px; left: 549px;"></div>
+
+        <div id="ticket-E-1" class="sticker" style="top: 772px; left: 856px;"></div>
+        <div id="ticket-E-2" class="sticker" style="top: 816px; left: 879px;"></div>
+        <div id="ticket-E-3" class="sticker" style="top: 860px; left: 902px;"></div>
+
+        <div id="ticket-F-1" class="sticker" style="top: 1033px; left: 414px;"></div>
+        <div id="ticket-F-2" class="sticker" style="top: 1033px; left: 464px;"></div>
+        <div id="ticket-F-3" class="sticker" style="top: 1034px; left: 512px;"></div>
+        <div id="ticket-F-4" class="sticker" style="top: 1034px; left: 562px;"></div>
+        <div id="ticket-F-5" class="sticker" style="top: 1034px; left: 610px;"></div>
+        <div id="ticket-F-6" class="sticker" style="top: 1036px; left: 660px;"></div>
+        <div id="ticket-F-7" class="sticker" style="top: 1035px; left: 720px;"></div>
+        <div id="ticket-F-8" class="sticker" style="top: 1034px; left: 760px;"></div>
+        <div id="ticket-F-9" class="sticker" style="top: 1034px; left: 810px;"></div>
+        <div id="ticket-F-10" class="sticker" style="top: 1034px; left: 858px;"></div>
+        <div id="ticket-F-11" class="sticker" style="top: 1122px; left: 414px;"></div>
+        <div id="ticket-F-12" class="sticker" style="top: 1122px; left: 464px;"></div>
+        <div id="ticket-F-13" class="sticker" style="top: 1121px; left: 512px;"></div>
+        <div id="ticket-F-14" class="sticker" style="top: 1121px; left: 562px;"></div>
+        <div id="ticket-F-15" class="sticker" style="top: 1122px; left: 610px;"></div>
+        <div id="ticket-F-16" class="sticker" style="top: 1123px; left: 660px;"></div>
+        <div id="ticket-F-17" class="sticker" style="top: 1122px; left: 720px;"></div>
+        <div id="ticket-F-18" class="sticker" style="top: 1123px; left: 760px;"></div>
+        <div id="ticket-F-19" class="sticker" style="top: 1122px; left: 810px;"></div>
+        <div id="ticket-F-20" class="sticker" style="top: 1122px; left: 858px;"></div>
+
+        <div id="ticket-G-1" class="sticker" style="top: 1278px; left: 414px;"></div>
+        <div id="ticket-G-2" class="sticker" style="top: 1279px; left: 464px;"></div>
+        <div id="ticket-G-3" class="sticker" style="top: 1279px; left: 512px;"></div>
+        <div id="ticket-G-4" class="sticker" style="top: 1279px; left: 562px;"></div>
+        <div id="ticket-G-5" class="sticker" style="top: 1279px; left: 610px;"></div>
+        <div id="ticket-G-6" class="sticker" style="top: 1278px; left: 660px;"></div>
+        <div id="ticket-G-7" class="sticker" style="top: 1278px; left: 720px;"></div>
+        <div id="ticket-G-8" class="sticker" style="top: 1279px; left: 760px;"></div>
+        <div id="ticket-G-9" class="sticker" style="top: 1279px; left: 810px;"></div>
+        <div id="ticket-G-10" class="sticker" style="top: 1279px; left: 858px;"></div>
+        <div id="ticket-G-11" class="sticker" style="top: 1368px; left: 414px;"></div>
+        <div id="ticket-G-12" class="sticker" style="top: 1368px; left: 464px;"></div>
+        <div id="ticket-G-13" class="sticker" style="top: 1369px; left: 512px;"></div>
+        <div id="ticket-G-14" class="sticker" style="top: 1368px; left: 562px;"></div>
+        <div id="ticket-G-15" class="sticker" style="top: 1368px; left: 610px;"></div>
+        <div id="ticket-G-16" class="sticker" style="top: 1366px; left: 660px;"></div>
+        <div id="ticket-G-17" class="sticker" style="top: 1368px; left: 720px;"></div>
+        <div id="ticket-G-18" class="sticker" style="top: 1368px; left: 760px;"></div>
+        <div id="ticket-G-19" class="sticker" style="top: 1367px; left: 810px;"></div>
+        <div id="ticket-G-20" class="sticker" style="top: 1368px; left: 858px;"></div>
+
+        <div id="ticket-H-1" class="sticker" style="top: 1524px; left: 414px;"></div>
+        <div id="ticket-H-2" class="sticker" style="top: 1524px; left: 464px;"></div>
+        <div id="ticket-H-3" class="sticker" style="top: 1524px; left: 512px;"></div>
+        <div id="ticket-H-4" class="sticker" style="top: 1523px; left: 562px;"></div>
+        <div id="ticket-H-5" class="sticker" style="top: 1523px; left: 610px;"></div>
+        <div id="ticket-H-6" class="sticker" style="top: 1525px; left: 660px;"></div>
+        <div id="ticket-H-7" class="sticker" style="top: 1524px; left: 720px;"></div>
+        <div id="ticket-H-8" class="sticker" style="top: 1524px; left: 760px;"></div>
+        <div id="ticket-H-9" class="sticker" style="top: 1525px; left: 810px;"></div>
+        <div id="ticket-H-10" class="sticker" style="top: 1524px; left: 858px;"></div>
+        <div id="ticket-H-11" class="sticker" style="top: 1613px; left: 414px;"></div>
+        <div id="ticket-H-12" class="sticker" style="top: 1613px; left: 464px;"></div>
+        <div id="ticket-H-13" class="sticker" style="top: 1613px; left: 512px;"></div>
+        <div id="ticket-H-14" class="sticker" style="top: 1613px; left: 562px;"></div>
+        <div id="ticket-H-15" class="sticker" style="top: 1613px; left: 610px;"></div>
+        <div id="ticket-H-16" class="sticker" style="top: 1615px; left: 660px;"></div>
+        <div id="ticket-H-17" class="sticker" style="top: 1614px; left: 720px;"></div>
+        <div id="ticket-H-18" class="sticker" style="top: 1612px; left: 760px;"></div>
+        <div id="ticket-H-19" class="sticker" style="top: 1613px; left: 810px;"></div>
+        <div id="ticket-H-20" class="sticker" style="top: 1613px; left: 858px;"></div>
+
+        <div id="ticket-I-1" class="sticker" style="top: 1773px; left: 414px;"></div>
+        <div id="ticket-I-2" class="sticker" style="top: 1773px; left: 464px;"></div>
+        <div id="ticket-I-3" class="sticker" style="top: 1773px; left: 512px;"></div>
+        <div id="ticket-I-4" class="sticker" style="top: 1773px; left: 562px;"></div>
+        <div id="ticket-I-5" class="sticker" style="top: 1773px; left: 610px;"></div>
+        <div id="ticket-I-6" class="sticker" style="top: 1774px; left: 660px;"></div>
+        <div id="ticket-I-7" class="sticker" style="top: 1773px; left: 720px;"></div>
+        <div id="ticket-I-8" class="sticker" style="top: 1772px; left: 760px;"></div>
+        <div id="ticket-I-9" class="sticker" style="top: 1773px; left: 810px;"></div>
+        <div id="ticket-I-10" class="sticker" style="top: 1773px; left: 858px;"></div>
+
+        <!-- 其餘籤位請依序補齊 -->
+    </div>
+
+    <!-- 注意：此處必須為 type="module" -->
+    <script type="module">
+        // 匯入 Firebase V9 模組 (透過 CDN)
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
+
+        // !!! 請將下方物件替換為你截圖中的 firebaseConfig !!!
+        const firebaseConfig = {
+            apiKey: "AIzaSyBxTH55ftEO149fvFCLgbRT66DvbS4kld8",
+            authDomain: "kuji-f7fc5.firebaseapp.com",
+            databaseURL: "https://kuji-f7fc5-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "kuji-f7fc5",
+            storageBucket: "kuji-f7fc5.firebasestorage.app",
+            messagingSenderId: "171323183477",
+            appId: "1:171323183477:web:ba7676471d1475fa13433c",
+            measurementId: "G-1K0FCM4D15"
+        };
+        
+        // 初始化 Firebase 與 Database
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const statusRef = ref(db, 'kuji_status');
+
+        // 監聽資料庫變化
+        onValue(statusRef, (snapshot) => { 
+            const data = snapshot.val();
+            if (!data) return;
+
+            for (let id in data) {
+                const el = document.getElementById('ticket-' + id);
+                if (el) {
+                    const prizeType = id.split('-')[0];
+                    const targetClass = 'sold-' + prizeType;
+
+                    if (data[id] === 1) {
+                        el.classList.add(targetClass);
+                    } else {
+                        el.classList.remove(targetClass);
+                    }
+                }
+            }
+        });
+
+// 進階座標輔助工具：點擊自動複製座標 (無彈窗干擾版)
+document.getElementById('board').addEventListener('click', function(e) {
+    const rect = this.getBoundingClientRect();
+    // 計算相對於底圖的 X 與 Y 座標
+    const x = Math.round(e.clientX - rect.left);
+    const y = Math.round(e.clientY - rect.top);
+    
+    // 組合出可以直接貼到 style 屬性內的字串格式
+    const coordText = `top: ${y}px; left: ${x}px;`;
+    
+    // 將座標默默寫入系統剪貼簿，不跳出任何視窗
+    navigator.clipboard.writeText(coordText).then(() => {
+        // 在按 F12 開啟的 Console 裡留個紀錄，方便你隨時看
+        console.log(`✅ 已偷偷複製： ${coordText}`);
+    }).catch(err => {
+        console.error('複製失敗，可能瀏覽器權限擋住了', err);
+    });
+});
+    </script>
+</body>
+</html>
