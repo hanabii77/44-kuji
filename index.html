@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>🏮～四番賞～和陰間使者共度今夜</title>
     <style>
-/* 1. 基礎與防縮放排版 */
+
 body { 
     margin: 0; 
     background-color: #111; 
@@ -13,7 +13,7 @@ body {
 
 #board {
     position: relative;
-    width: 1080px; /* 這裡請填入你 background.jpg 的真實像素寬度 */
+    width: 1080px;
     height: auto;
     margin: 0 auto; 
     max-width: none;
@@ -26,19 +26,19 @@ body {
     display: block; 
 }
 
-/* 2. 貼紙基礎設定 (絕對不能刪) */
+
 .sticker {
     position: absolute;
-    width: 100px;  /* 請根據底圖的格子大小自行調整貼紙寬度 */
-    height: 75px; /* 請根據底圖的格子大小自行調整貼紙高度 */
+    width: 100px;
+    height: 75px;
     background-size: contain;
     background-repeat: no-repeat;
-    opacity: 0;   /* 預設透明，未抽中時隱藏 */
+    opacity: 0;
     transition: opacity 0.3s ease;
-    z-index: 10;  /* 雙重保險：強制貼紙顯示在最上層 */
+    z-index: 10;
 }
 
-/* 3. 各賞別圖片路徑與顯示狀態 (絕對不能刪) */
+
 .sold-Last { background-image: url('sold_Last.png'); opacity: 1; }
 .sold-A { background-image: url('sold_A.png'); opacity: 1; }
 .sold-B { background-image: url('sold_B.png'); opacity: 1; }
@@ -55,7 +55,7 @@ body {
     display: block; 
 }
 
-        /* 專屬貼紙設定 */
+        
         .sold-Last { background-image: url('sold_Last.png'); opacity: 1; }
         .sold-A { background-image: url('sold_A.png'); opacity: 1; }
         .sold-B { background-image: url('sold_B.png'); opacity: 1; }
@@ -73,7 +73,7 @@ body {
     <div id="board">
         <img src="background.png" class="base-img" alt="底圖">
         
-        <!-- 籤位範例 -->
+       
         <div id="ticket-Last-1" class="sticker" style="top: 50px; left: 100px;"></div>
         <div id="ticket-A-1" class="sticker" style="top: 460px; left: 322px;"></div>
         <div id="ticket-A-2" class="sticker" style="top: 522px; left: 342px;"></div>
@@ -168,16 +168,16 @@ body {
         <div id="ticket-I-9" class="sticker" style="top: 1773px; left: 810px;"></div>
         <div id="ticket-I-10" class="sticker" style="top: 1773px; left: 858px;"></div>
 
-        <!-- 其餘籤位請依序補齊 -->
+       
     </div>
 
-    <!-- 注意：此處必須為 type="module" -->
+   
     <script type="module">
-        // 匯入 Firebase V9 模組 (透過 CDN)
+        
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
         import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
 
-        // !!! 請將下方物件替換為你截圖中的 firebaseConfig !!!
+        
         const firebaseConfig = {
             apiKey: "AIzaSyBxTH55ftEO149fvFCLgbRT66DvbS4kld8",
             authDomain: "kuji-f7fc5.firebaseapp.com",
@@ -189,12 +189,12 @@ body {
             measurementId: "G-1K0FCM4D15"
         };
         
-        // 初始化 Firebase 與 Database
+        
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
         const statusRef = ref(db, 'kuji_status');
 
-        // 監聽資料庫變化
+        
         onValue(statusRef, (snapshot) => { 
             const data = snapshot.val();
             if (!data) return;
@@ -214,19 +214,19 @@ body {
             }
         });
 
-// 進階座標輔助工具：點擊自動複製座標 (無彈窗干擾版)
+
 document.getElementById('board').addEventListener('click', function(e) {
     const rect = this.getBoundingClientRect();
-    // 計算相對於底圖的 X 與 Y 座標
+    
     const x = Math.round(e.clientX - rect.left);
     const y = Math.round(e.clientY - rect.top);
     
-    // 組合出可以直接貼到 style 屬性內的字串格式
+    
     const coordText = `top: ${y}px; left: ${x}px;`;
     
-    // 將座標默默寫入系統剪貼簿，不跳出任何視窗
+    
     navigator.clipboard.writeText(coordText).then(() => {
-        // 在按 F12 開啟的 Console 裡留個紀錄，方便你隨時看
+        
         console.log(`✅ 已偷偷複製： ${coordText}`);
     }).catch(err => {
         console.error('複製失敗，可能瀏覽器權限擋住了', err);
