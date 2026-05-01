@@ -49,13 +49,14 @@ body {
 .sold-G { background-image: url('sold_G.png'); opacity: 1; }
 .sold-H { background-image: url('sold_H.png'); opacity: 1; }
 .sold-I { background-image: url('sold_I.png'); opacity: 1; }
+.sold-end { background-image: url('sold_end.png'); opacity: 1; }
 
 .base-img { 
     width: 100%; 
     display: block; 
 }
 
-        
+
         .sold-Last { background-image: url('sold_Last.png'); opacity: 1; }
         .sold-A { background-image: url('sold_A.png'); opacity: 1; }
         .sold-B { background-image: url('sold_B.png'); opacity: 1; }
@@ -66,6 +67,7 @@ body {
         .sold-G { background-image: url('sold_G.png'); opacity: 1; }
         .sold-H { background-image: url('sold_H.png'); opacity: 1; }
         .sold-I { background-image: url('sold_I.png'); opacity: 1; }
+        .sold-end { background-image: url('sold_end.png'); opacity: 1;}
     </style>
 </head>
 <body>
@@ -73,7 +75,7 @@ body {
     <div id="board">
         <img src="background.png" class="base-img" alt="底圖">
         
-       
+        
         <div id="ticket-Last-1" class="sticker" style="top: 50px; left: 100px;"></div>
         <div id="ticket-A-1" class="sticker" style="top: 460px; left: 322px;"></div>
         <div id="ticket-A-2" class="sticker" style="top: 522px; left: 342px;"></div>
@@ -168,70 +170,78 @@ body {
         <div id="ticket-I-9" class="sticker" style="top: 1773px; left: 810px;"></div>
         <div id="ticket-I-10" class="sticker" style="top: 1773px; left: 858px;"></div>
 
-       
+        <div id="end-A" class="sticker sold-end" style="top: 659px; left: 40px;"></div>
+        <div id="end-B" class="sticker sold-end" style="top: 663px; left: 521px;"></div>
+        <div id="end-C" class="sticker sold-end" style="top: 928px; left: 2px;"></div>
+        <div id="end-D" class="sticker sold-end" style="top: 928px; left: 323px;"></div>
+        <div id="end-E" class="sticker sold-end" style="top: 931px; left: 697px;"></div>
+        <div id="end-F" class="sticker sold-end" style="top: 1184px; left: 0px;"></div>
+        <div id="end-G" class="sticker sold-end" style="top: 1428px; left: 0px;"></div>
+        <div id="end-H" class="sticker sold-end" style="top: 1667px; left: 0px;"></div>
+        <div id="end-I" class="sticker sold-end" style="top: 1850px; left: 0px;"></div>
+
+
     </div>
 
    
     <script type="module">
         
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
 
-        
-        const firebaseConfig = {
-            apiKey: "AIzaSyBxTH55ftEO149fvFCLgbRT66DvbS4kld8",
-            authDomain: "kuji-f7fc5.firebaseapp.com",
-            databaseURL: "https://kuji-f7fc5-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "kuji-f7fc5",
-            storageBucket: "kuji-f7fc5.firebasestorage.app",
-            messagingSenderId: "171323183477",
-            appId: "1:171323183477:web:ba7676471d1475fa13433c",
-            measurementId: "G-1K0FCM4D15"
-        };
-        
-        
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-        const statusRef = ref(db, 'kuji_status');
 
+const firebaseConfig = {
+  apiKey: "AIzaSyBxTH55ftEO149fvFCLgbRT66DvbS4kld8",
+  authDomain: "kuji-f7fc5.firebaseapp.com",
+  databaseURL: "https://kuji-f7fc5-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "kuji-f7fc5",
+  storageBucket: "kuji-f7fc5.firebasestorage.app",
+  messagingSenderId: "171323183477",
+  appId: "1:171323183477:web:ba7676471d1475fa13433c",
+  measurementId: "G-1K0FCM4D15"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const prizeCounts = {
+    'A': 3, 'B': 3, 'C': 2, 'D': 3, 'E': 3,
+    'F': 20, 'G': 20, 'H': 20, 'I': 10
+};
+
+
+onValue(ref(db, 'kuji_status'), (snapshot) => {
+    if (snapshot.exists()) {
+        const data = snapshot.val();
         
-        onValue(statusRef, (snapshot) => { 
-            const data = snapshot.val();
-            if (!data) return;
+        
+        for (let key in data) {
+            const sticker = document.getElementById('ticket-' + key);
+            if (sticker) {
+                const prizeLetter = key.split('-')[0]; 
+                sticker.classList.add('sold-' + prizeLetter);
+                sticker.style.opacity = (data[key] === 1) ? 1 : 0;
+            }
+        }
 
-            for (let id in data) {
-                const el = document.getElementById('ticket-' + id);
-                if (el) {
-                    const prizeType = id.split('-')[0];
-                    const targetClass = 'sold-' + prizeType;
-
-                    if (data[id] === 1) {
-                        el.classList.add(targetClass);
-                    } else {
-                        el.classList.remove(targetClass);
-                    }
+        for (let prize in prizeCounts) {
+            let isAllSoldOut = true; 
+            
+            for (let i = 1; i <= prizeCounts[prize]; i++) {
+                if (data[`${prize}-${i}`] === 0) {
+                    isAllSoldOut = false;
+                    break;
                 }
             }
-        });
 
-
-document.getElementById('board').addEventListener('click', function(e) {
-    const rect = this.getBoundingClientRect();
-    
-    const x = Math.round(e.clientX - rect.left);
-    const y = Math.round(e.clientY - rect.top);
-    
-    
-    const coordText = `top: ${y}px; left: ${x}px;`;
-    
-    
-    navigator.clipboard.writeText(coordText).then(() => {
-        
-        console.log(`✅ 已偷偷複製： ${coordText}`);
-    }).catch(err => {
-        console.error('複製失敗，可能瀏覽器權限擋住了', err);
-    });
+            const endSticker = document.getElementById(`end-${prize}`);
+            if (endSticker) {
+                endSticker.style.opacity = isAllSoldOut ? 1 : 0;
+            }
+        }
+    }
 });
+
+
     </script>
 </body>
 </html>
