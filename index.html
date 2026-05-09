@@ -209,19 +209,6 @@ for (let prize in prizeCounts) {
     }
 }
 
-
-document.getElementById('board').addEventListener('click', function(e) {
-    const rect = this.getBoundingClientRect();
-    const x = Math.round(e.clientX - rect.left);
-    const y = Math.round(e.clientY - rect.top);
-    const coordText = `top: ${y}px; left: ${x}px;`;
-    
-    navigator.clipboard.writeText(coordText).then(() => {
-        console.log(`✅ 已複製座標： ${coordText}`);
-    }).catch(err => {
-        console.error('複製失敗', err);
-    });
-});
 </script>
 </body>
 </html>
