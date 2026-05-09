@@ -184,64 +184,44 @@ body {
     </div>
 
    
-    <script type="module">
-        
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
+<script>
 
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBxTH55ftEO149fvFCLgbRT66DvbS4kld8",
-  authDomain: "kuji-f7fc5.firebaseapp.com",
-  databaseURL: "https://kuji-f7fc5-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "kuji-f7fc5",
-  storageBucket: "kuji-f7fc5.firebasestorage.app",
-  messagingSenderId: "171323183477",
-  appId: "1:171323183477:web:ba7676471d1475fa13433c",
-  measurementId: "G-1K0FCM4D15"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
 const prizeCounts = {
     'A': 3, 'B': 3, 'C': 2, 'D': 3, 'E': 3,
     'F': 20, 'G': 20, 'H': 20, 'I': 10
 };
 
-
-onValue(ref(db, 'kuji_status'), (snapshot) => {
-    if (snapshot.exists()) {
-        const data = snapshot.val();
-        
-        
-        for (let key in data) {
-            const sticker = document.getElementById('ticket-' + key);
-            if (sticker) {
-                const prizeLetter = key.split('-')[0]; 
-                sticker.classList.add('sold-' + prizeLetter);
-                sticker.style.opacity = (data[key] === 1) ? 1 : 0;
-            }
-        }
-
-        for (let prize in prizeCounts) {
-            let isAllSoldOut = true; 
-            
-            for (let i = 1; i <= prizeCounts[prize]; i++) {
-                if (data[`${prize}-${i}`] === 0) {
-                    isAllSoldOut = false;
-                    break;
-                }
-            }
-
-            const endSticker = document.getElementById(`end-${prize}`);
-            if (endSticker) {
-                endSticker.style.opacity = isAllSoldOut ? 1 : 0;
-            }
+for (let prize in prizeCounts) {
+    for (let i = 1; i <= prizeCounts[prize]; i++) {
+        const key = `${prize}-${i}`;
+        const sticker = document.getElementById('ticket-' + key);
+        if (sticker) {
+            sticker.classList.add('sold-' + prize);
+            sticker.style.opacity = 1;
         }
     }
+}
+
+for (let prize in prizeCounts) {
+    const endSticker = document.getElementById(`end-${prize}`);
+    if (endSticker) {
+        endSticker.style.opacity = 1;
+    }
+}
+
+
+document.getElementById('board').addEventListener('click', function(e) {
+    const rect = this.getBoundingClientRect();
+    const x = Math.round(e.clientX - rect.left);
+    const y = Math.round(e.clientY - rect.top);
+    const coordText = `top: ${y}px; left: ${x}px;`;
+    
+    navigator.clipboard.writeText(coordText).then(() => {
+        console.log(`✅ 已複製座標： ${coordText}`);
+    }).catch(err => {
+        console.error('複製失敗', err);
+    });
 });
-
-
-    </script>
+</script>
 </body>
 </html>
